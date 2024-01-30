@@ -1,4 +1,20 @@
 .sfondoBoolzapp {
     background: rgb(255, 255, 255);
-    background: linear-gradient(0deg, rgba(255,255,255,1) 90%, rgba(0,150,136,1) 90%);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 90%, rgba(0, 150, 136, 1) 90%);
+}
+
+.temaBoolzapp {
+    
+    background-image: url('/assets/img/sfondoChat.jpg');
+    width: 100%;
+    height: 85%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: block;
+    opacity: 65%;
+
+}
+
+.fontSize {
+    font-size: 10px;
 }
