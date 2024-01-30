@@ -181,7 +181,7 @@ createApp({
     methods: {
 
         cambioUtente(index){
-            this.utente = this.contacts[index]
+            this.utente = this.contacts[index] || null
 
         }
     }
