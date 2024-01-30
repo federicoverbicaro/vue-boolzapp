@@ -4,14 +4,12 @@
 }
 
 .temaBoolzapp {
-    
-    background-image: url('/assets/img/sfondoChat.jpg');
     width: 100%;
-    height: 85%;
+    height: 100%;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     display: block;
-    opacity: 65%;
+    position: relative;
 
 }
 

@@ -3,6 +3,7 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
+            utente: null,
             contacts: [
 
                 {
@@ -29,7 +30,7 @@ createApp({
                 },
 
                 {
-                    name: 'Fabio',
+                    name: 'Martina',
                     avatar: './assets/img/img:02.png',
                     visible: true,
                     messages: [
@@ -75,7 +76,7 @@ createApp({
                 },
 
                 {
-                    name: 'Alessandro B.',
+                    name: 'Francesca',
                     avatar: './assets/img/img:04.png',
                     visible: true,
                     messages: [
@@ -178,6 +179,11 @@ createApp({
     },
 
     methods: {
+
+        cambioUtente(index){
+            this.utente = this.contacts[index]
+
+        }
     }
 
 }).mount('#app')
