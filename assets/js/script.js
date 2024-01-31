@@ -5,6 +5,7 @@ createApp({
         return {
             utente: 0,
             messaggioNuovo: "",
+            rispostaNuova: "ok",
             contacts: [
 
                 {
@@ -181,26 +182,47 @@ createApp({
 
     methods: {
 
-        cambioUtente(index){
+        cambioUtente(index) {
             this.utente = index
 
         },
-        aggiungiMessaggio(){
-            if(this.messaggioNuovo !== ''){
+        aggiungiMessaggio() {
+            if (this.messaggioNuovo !== '') {
 
                 const oraCorrente = new Date()
                 const nuovoMessaggio = {
 
-                    date:`${oraCorrente.getHours()}:${oraCorrente.getMinutes()}`,
+                    date: `${oraCorrente.getHours()}:${oraCorrente.getMinutes()}`,
                     message: this.messaggioNuovo,
                     status: 'sent',
                 }
 
                 this.contacts[this.utente].messages.push(nuovoMessaggio)
-
+                
+                setTimeout(() => {
+                    this.rispostaMessaggio();
+                  }, 1000);
             }
             this.messaggioNuovo = ""
+        },
+
+        rispostaMessaggio() {
+            if (this.rispostaNuova === "ok") {
+
+                const oraCorrente = new Date()
+                const nuovoMessaggio2 = {
+
+                    date: `${oraCorrente.getHours()}:${oraCorrente.getMinutes()}`,
+                    message: this.rispostaNuova,
+                    status: 'received'
+                }
+
+                this.contacts[this.utente].messages.push(nuovoMessaggio2) 
+
+            }
+
         }
+
     }
 
 }).mount('#app')
