@@ -4,6 +4,7 @@ createApp({
     data() {
         return {
             utente: 0,
+            messaggioNuovo: "",
             contacts: [
 
                 {
@@ -183,6 +184,22 @@ createApp({
         cambioUtente(index){
             this.utente = index
 
+        },
+        aggiungiMessaggio(){
+            if(this.messaggioNuovo !== ''){
+
+                const oraCorrente = new Date()
+                const nuovoMessaggio = {
+
+                    date:`${oraCorrente.getHours()}:${oraCorrente.getMinutes()}`,
+                    message: this.messaggioNuovo,
+                    status: 'sent',
+                }
+
+                this.contacts[this.utente].messages.push(nuovoMessaggio)
+
+            }
+            this.messaggioNuovo = ""
         }
     }
 

@@ -127,24 +127,21 @@
                             </span>
                         </div>
 
-
-                        <!-- <div class="received bg-light p-3 rounded position-relative">
-                            <p class="m-0">
-                                hai portato a spasso il cane
-                            </p>
-                            <span>
-                                15:00
-                            </span>
-                        </div> -->
-
                     </div>
 
                     <div id="col-right-new-message" class="d-flex align-items-center p-2 gap-3">
+
                         <i class="far fa-smile px-3"></i>
+
                         <div class="w-100">
-                            <input type="text" class="form-control" name="newMessage" id="newMessage"
+
+                            <input v-model="messaggioNuovo" @keyup.enter="aggiungiMessaggio"
+                            
+                             type="text" class="form-control" name="newMessage" id="newMessage"
                                 placeholder="Nuovo messaggio.." />
+
                         </div>
+
                         <i class="fa fa-microphone px-3" aria-hidden="true"></i>
                     </div>
                 </div>
