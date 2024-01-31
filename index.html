@@ -1,224 +1,164 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vue-Boolzapp</title>
-
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css'
-        integrity='sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=='
-        crossorigin='anonymous' />
-
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Boolzapp milestone 1</title>
 
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css'
         integrity='sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg=='
         crossorigin='anonymous' />
 
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.css'
+        integrity='sha512-tx5+1LWHez1QiaXlAyDwzdBTfDjX07GMapQoFTS74wkcPMsI3So0KYmFe6EHZjI8+eSG0ljBlAQc3PQ5BTaZtQ=='
+        crossorigin='anonymous' />
+    <link rel="stylesheet" href="./assets/css/style.css">
+
 </head>
 
 <body>
 
-    <div id="app">
-        <div class="sfondoBoolzapp ">
+    <div id="app" class="sfondoBoolzapp" >
+        <div class="container " >
+            <div class="row h-100 py-5 ">
+                <div id="col-left" class="col-5 border px-0 d-flex flex-column">
 
-            <div class="container d-flex justify-content-center  pt-3 ">
-
-                <div class="col-5 border  ">
-
-                    <!-- mio avatar -->
-
-                    <div class="d-flex justify-content-between bg-body-tertiary   p-2">
-
-                        <div class="d-flex ">
-                            <img src="./assets/img/io.png" height="40" width="40" alt="federico">
-
-                            <h6 class=" d-flex align-items-center m-0 text-capitalize ms-2   ">federico</h6>
+                    <div id="col-left-top" class="p-2 d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <figure>
+                                <img src="./assets/img/io.png" class="rounded-circle" width="65" alt="avatar personale">
+                            </figure>
+                            <span>Federico</span>
                         </div>
-
-                        <div class="d-flex align-items-center gap-3  ">
-                            <span>
-                                <i class="fa-solid fa-circle-notch text-body-secondary"></i>
-                            </span>
-                            <span>
-                                <i class="fa-solid fa-message text-body-secondary"></i>
-                            </span>
-                            <span>
-                                <i class="fa-solid fa-ellipsis-vertical text-body-secondary"></i>
-                            </span>
+                        <div class="d-flex gap-3">
+                            <i class="fas fa-circle-notch"></i>
+                            <i class="fas fa-comment-alt"></i>
+                            <i class="fas fa-ellipsis-v"></i>
                         </div>
                     </div>
 
-                    <!-- avvisi notifice -->
-
-                    <div class="p-3 d-flex bg-info-subtle ">
-
-                        <div class="bg-white d-flex align-items-center rounded-5 me-3 p-3 h-100 ">
-
-                            <i class="far fa-bell-slash text-info  "></i>
-
+                    <div id="col-left-notifiche" class="p-2 d-flex align-items-center gap-3">
+                        <div id="bell" class="rounded-circle bg-light">
+                            <i class="fa fa-bell-slash" aria-hidden="true"></i>
                         </div>
+                        <div>
+                            <h3 class="fs-6">Ricevi notifiche di nuovi messaggi</h3>
+                            <a href="">Attiva notifiche desktop</a>
+                        </div>
+                    </div>
 
-                        <div class="d-flex flex-column ">
-                            <span class="text-capitalize fs-6  ">
-                                ricevi notifiche di nuovi messagi
+                    <div id="col-left-search" class="p-2 ">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1">
+                                <i class="fa fa-search" aria-hidden="true"></i>
                             </span>
-
-                            <span class="text-capitalize fs-6 ">
-                                <a href="#" class="text-body-tertiary">attiva notifice desktop</a>
-                                <span>
-
+                            <input type="text" class="form-control" placeholder="Cerca nella chat..."
+                                aria-label="Username" aria-describedby="basic-addon1">
                         </div>
                     </div>
 
-                    <!-- barra di ricerca -->
+                    <div id="col-left-chats" class="h-100 d-flex flex-grow-1 bg-light overflow-y-scroll">
+                        <div class="w-100">
 
-                    <div class="input-group flex-nowrap rounded-0 ">
-                        <span class="input-group-text border-0 bg-white" id="addon-wrapping">
-                            <i class="fas fa-search"></i>
-                        </span>
-                        <input type="text" class="form-control border-0" placeholder="Cerca o inizia una nuova chat"
-                            aria-label="Username" aria-describedby="addon-wrapping">
-                    </div>
+                            <div 
+                            v-for="(element, index) in contacts"
+                            @click="cambioUtente(index)"
+                                class="p-2 border d-flex align-items-center justify-content-between gap-2">
 
-                    <div class="overflow-y-scroll ">
-
-                        <div v-for="(item, index) in contacts" :key="index" v-on:click="cambioUtente(index)"
-                            class="d-flex p-2 position-relative bg-white border-top  ">
-                            <div>
-                                <img v-bind:src="item.avatar" height="40" width="40" alt="federico">
-                            </div>
-
-                            <div class="">
-                                <div class="d-flex  flex-column ms-2">
-                                    <h6 class=" d-flex align-items-center m-0 text-capitalize">
-                                        {{item.name}}
-                                    </h6>
-
-                                    <span class="fontSize text-capitalize text-body-tertiary ">
-                                        ultimo messaggio inviato
-                                    </span>
+                                <div 
+                                class="d-flex align-items-center">
+                                    <figure>
+                                        <img :src="element.avatar" alt="" class="rounded-circle" width="65">
+                                    </figure>
+                                    <div>
+                                        <span>
+                                            {{ element.name }}
+                                        </span>
+                                        <p class="ultimo-messaggio">
+                                            {{ element.messages[element.messages.length - 1].message }}
+                                        </p>
+                                    </div>
                                 </div>
-
-                                <div class="position-absolute top-0 end-0 p-1   ">
-                                    <span class="fontSize text-body-tertiary ">
-                                        12.00
+                                <div>
+                                    <span class="ultimo-messaggio">
+                                        {{ element.messages[element.messages.length - 1].date }}
                                     </span>
                                 </div>
                             </div>
 
                         </div>
                     </div>
-
                 </div>
 
-                <!-- utente richiamato per messaggio -->
+                <div id="col-right" class="col-7 border px-0 d-flex flex-column">
 
-                <div class="col-7 border ">
-
-                    <div class="d-flex justify-content-between bg-body-tertiary   p-2">
-
-                        <div class="">
-
-                            <div class="d-flex ">
-                                <div>
-                                    <img v-if="utente" v-bind:src="utente.avatar" height="40" width="40" alt="federico">
-                                </div>
-
-                                <div class="d-flex  flex-column ms-2">
-                                    <h6 class=" d-flex align-items-center m-0 text-capitalize ms-2   ">{{ utente ?
-                                        utente.name :
-                                        '' }}
-                                    </h6>
-                                    <div>
-
-                                        <span class="d-flex fontSize pt-1 ms-2">ultimo acesso oggi alle 12.00</span>
-                                    </div>
-                                </div>
+                    <div id="col-left-top" class="p-2 d-flex align-items-center justify-content-between">
+                        <div 
+                        class="d-flex align-items-center gap-3">
+                            <figure>
+                                <img :src="contacts[utente].avatar" class="rounded-circle" width="65"
+                                    alt="avatar personale">
+                            </figure>
+                            <div>
+                                <span>{{contacts[utente].name}}</span>
+                                <p class="ultimo-accesso">Ultimo accesso oggi alle 12:00</p>
                             </div>
-
                         </div>
-
-                        <div class="d-flex align-items-center gap-3  ">
-
-                            <span>
-                                <i class="fas fa-search text-body-secondary"></i>
-                            </span>
-
-                            <span>
-                                <i class="fas fa-paperclip text-body-secondary"></i>
-                            </span>
-
-                            <span>
-                                <i class="fa-solid fa-ellipsis-vertical text-body-secondary"></i>
-                            </span>
+                        <div class="d-flex gap-3">
+                            <i class="fas fa-search"></i>
+                            <i class="fas fa-paperclip"></i>
+                            <i class="fas fa-ellipsis-v"></i>
                         </div>
                     </div>
 
-                    <!-- colonne di messaggi -->
+                    <div id="col-right-chat" class="flex-grow-1 overflow-y-scroll p-3">
 
-                    <div class="position-relative ">
-
-
-                        <div class="temaBoolzapp ">
-                            <img class="img-fluid " src="./assets/img/sfondoChat.jpg" alt="">
+                        <div v-for="(item, index) in contacts [utente].messages" 
+                        :key="index"
+                        :class=" (item.status === 'sent' ) ?  'sent ms-auto ' : 'received bg-light' " 
+                         class="p-3 rounded position-relative mb-4">
+                            
+                            <p class="m-0">
+                                {{item.message}}
+                            </p>
+                            <span>
+                                {{item.date}}
+                            </span>
                         </div>
 
 
-                        <!-- contenitore per messaggi -->
-                        <div v-if="utente && utente.messages">
-                            <div v-for="(message, msgIndex) in utente.messages || []" :key="msgIndex">
-                                <div v-if="message.status === 'sent'" class="col-6 z-1  d-flex align-items-end flex-column position-absolute top-0 end-0">
-                                    <div class="w-50 rounded bg-success p-2 text-white bg-opacity-75 mb-2">
-                                        <span>{{ message.message }}</span>
-                                    </div>
-                                </div>
-                                <div v-else class="col-6 z-1  d-flex align-items-end flex-column position-absolute top-0 start-0">
-                                    <div class="w-50 rounded bg-dark-subtle p-2 text-white bg-opacity-75  mb-2">
-                                        <span>{{ message.message }}</span>
-                                    </div>
-                                </div>
-                            </div>
+                        <!-- <div class="received bg-light p-3 rounded position-relative">
+                            <p class="m-0">
+                                hai portato a spasso il cane
+                            </p>
+                            <span>
+                                15:00
+                            </span>
+                        </div> -->
+
+                    </div>
+
+                    <div id="col-right-new-message" class="d-flex align-items-center p-2 gap-3">
+                        <i class="far fa-smile px-3"></i>
+                        <div class="w-100">
+                            <input type="text" class="form-control" name="newMessage" id="newMessage"
+                                placeholder="Nuovo messaggio.." />
                         </div>
-                        
-                        <!-- Input per nuovi messaggi -->
-                        <div>
-                            <div class="bg-body-tertiary opacity-50 justify-content-between  d-flex p-1 ">
-
-                                <div class="d-flex ps-2   col-1">
-                                    <span>
-                                        <i class="far fa-smile"></i>
-                                    </span>
-                                </div>
-
-                                <div class="d-flex col-10">
-                                    <input type="text" class="border rounded-2 w-100 " id="floatingInput"
-                                        placeholder="Scrivi un messaggio">
-                                </div>
-
-
-                                <div class="d-flex justify-content-end  pe-2  col-1">
-                                    <span>
-                                        <i class="fas fa-microphone"></i>
-                                    </span>
-                                </div>
-                            </div>
-
-                        </div>
+                        <i class="fa fa-microphone px-3" aria-hidden="true"></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-
-    <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
-    <script src="./assets/js/script.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js'
         integrity='sha512-WW8/jxkELe2CAiE4LvQfwm1rajOS8PHasCCx+knHG0gBHt8EXxS6T6tJRTGuDQVnluuAvMxWF4j8SNFDKceLFg=='
         crossorigin='anonymous'></script>
 
+    <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
+
+    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>

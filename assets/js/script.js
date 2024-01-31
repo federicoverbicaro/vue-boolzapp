@@ -3,7 +3,7 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
-            utente: null,
+            utente: 0,
             contacts: [
 
                 {
@@ -181,7 +181,7 @@ createApp({
     methods: {
 
         cambioUtente(index){
-            this.utente = this.contacts[index] || null
+            this.utente = index
 
         }
     }
