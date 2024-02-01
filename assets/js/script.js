@@ -233,6 +233,9 @@ createApp({
         
         eliminaMessagio(index){
             this.contacts[this.utente].messages.splice(index, 1);
+        },
+        ricercaContato(index){
+        this.contacts[this.utente].name.includes(cercaContato)
         }
 
         
