@@ -53,7 +53,11 @@
                             <span class="input-group-text" id="basic-addon1">
                                 <i class="fa fa-search" aria-hidden="true"></i>
                             </span>
-                            <input type="text" class="form-control" placeholder="Cerca nella chat..."
+                            <input
+                             v-model="cercaContato"
+                              v-on:input="ricercaContato"
+                              :class="`border d-flex align-items-center justify-content-between`"
+                            type="text" class="form-control" placeholder="Cerca nella chat..."
                                 aria-label="Username" aria-describedby="basic-addon1">
                         </div>
                     </div>
@@ -112,21 +116,30 @@
                         </div>
                     </div>
 
-                    <div id="col-right-chat" class="flex-grow-1 overflow-y-scroll p-3">
+                    <div id="col-right-chat" class=" flex-grow-1 overflow-y-scroll p-3 d-flex flex-column ">
 
-                        <div v-for="(item, index) in contacts [utente].messages" 
-                        :key="index"
-                        :class=" (item.status === 'sent' ) ?  'sent ms-auto ' : 'received bg-light' " 
-                         class="p-3 rounded position-relative mb-4">
-                            
-                            <p class="m-0">
+                        <button v-for="(item, index) in contacts [utente].messages" :key="index"
+                        :class=" (item.status === 'sent' ) ?  'sent ms-auto ' : 'received bg-light' "
+                        class="btn text-black dropdown-toggle p-3 rounded position-relative mb-4 text-wrap"
+                         type="button" 
+                         data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <p class=" p-1 m-0 d-flex text-start  ">
                                 {{item.message}}
                             </p>
-                            <span>
+                            <span class="">
                                 {{item.date}}
+            
                             </span>
-                        </div>
-
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Messaggio Info</a></li>
+                            
+                            <li v-on:click="eliminaMessagio">
+                                <a class="dropdown-item" href="#">Cancella messaggio</a>
+                            </li>
+                        </ul>
+            
                     </div>
 
                     <div id="col-right-new-message" class="d-flex align-items-center p-2 gap-3">
@@ -149,11 +162,13 @@
         </div>
     </div>
 
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js'
-        integrity='sha512-WW8/jxkELe2CAiE4LvQfwm1rajOS8PHasCCx+knHG0gBHt8EXxS6T6tJRTGuDQVnluuAvMxWF4j8SNFDKceLFg=='
-        crossorigin='anonymous'></script>
+   
 
     <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
 
     <script src="./assets/js/script.js"></script>
 </body>

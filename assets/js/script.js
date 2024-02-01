@@ -3,6 +3,8 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
+            eliminaMex: `display: none;`,
+            cercaContato: "",
             utente: 0,
             messaggioNuovo: "",
             rispostaNuova: "ok",
@@ -198,7 +200,7 @@ createApp({
                 }
 
                 this.contacts[this.utente].messages.push(nuovoMessaggio)
-                
+
                 setTimeout(() => {
                     this.rispostaMessaggio();
                   }, 1000);
@@ -221,8 +223,19 @@ createApp({
 
             }
 
+        },
+        ricercaContato(input){
+           if(this.contacts[this.utente].name) {
+            this.contacts[this.utente].includes(this.contacts[this.utente])
+           }
+            
+        },
+        
+        eliminaMessagio(index){
+            this.contacts[this.utente].messages.splice(index, 1);
         }
 
+        
     }
 
 }).mount('#app')
