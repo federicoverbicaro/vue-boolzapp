@@ -55,7 +55,6 @@
                             </span>
                             <input
                              v-model="cercaContato"
-                              v-on:input="ricercaContato"
                               :class="`border d-flex align-items-center justify-content-between`"
                             type="text" class="form-control" placeholder="Cerca nella chat..."
                                 aria-label="Username" aria-describedby="basic-addon1">
@@ -135,7 +134,8 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Messaggio Info</a></li>
                             
-                            <li v-on:click="eliminaMessagio">
+                            <li v-on:click="eliminaMessagio"
+                            >
                                 <a class="dropdown-item" href="#">Cancella messaggio</a>
                             </li>
                         </ul>

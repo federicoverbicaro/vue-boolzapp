@@ -203,7 +203,7 @@ createApp({
 
                 setTimeout(() => {
                     this.rispostaMessaggio();
-                  }, 1000);
+                }, 1000);
             }
             this.messaggioNuovo = ""
         },
@@ -219,26 +219,23 @@ createApp({
                     status: 'received'
                 }
 
-                this.contacts[this.utente].messages.push(nuovoMessaggio2) 
+                this.contacts[this.utente].messages.push(nuovoMessaggio2)
 
             }
 
         },
-        ricercaContato(input){
-           if(this.contacts[this.utente].name) {
-            this.contacts[this.utente].includes(this.contacts[this.utente])
-           }
+        ricercaContato() {
+            
+            const serchContato  = this.cercaContato.toLowerCase()
+            return this.contacts.filters(contact => contact.name.toLowerCase().includes(serchContato))
+
+        },
+
+        eliminaMessagio(index) {
+            this.contacts[this.utente].messages.splice(index,1);
             
         },
-        
-        eliminaMessagio(index){
-            this.contacts[this.utente].messages.splice(index, 1);
-        },
-        ricercaContato(index){
-        this.contacts[this.utente].name.includes(cercaContato)
-        }
 
-        
     }
 
 }).mount('#app')
