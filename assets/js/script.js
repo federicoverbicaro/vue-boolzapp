@@ -4,10 +4,10 @@ createApp({
     data() {
         return {
             eliminaMex: `display: none;`,
-            cercaContato: "",
             utente: 0,
             messaggioNuovo: "",
-            rispostaNuova: "ok",
+            rispostaNuova: "Perfetto!",
+            cercaContato: "",
             contacts: [
 
                 {
@@ -181,6 +181,13 @@ createApp({
             ]
         }
     },
+    mounted() {
+        // Aggiungi ID univoci a ciascun contatto
+        this.contacts.forEach((contact, index) => {
+            contact.id = index ;
+            console.log(this.contacts)
+        });
+    },
 
     methods: {
 
@@ -209,7 +216,7 @@ createApp({
         },
 
         rispostaMessaggio() {
-            if (this.rispostaNuova === "ok") {
+            if (this.rispostaNuova === "Perfetto!") {
 
                 const oraCorrente = new Date()
                 const nuovoMessaggio2 = {
@@ -225,16 +232,20 @@ createApp({
 
         },
         ricercaContato() {
-            
-            const serchContato  = this.cercaContato.toLowerCase()
-            return this.contacts.filters(contact => contact.name.toLowerCase().includes(serchContato))
+            const termineRicerca = this.cercaContato.toLowerCase();
 
+            this.contacts.forEach((element) => {
+               element.visible = element.name.toLowerCase().includes(termineRicerca);
+              
+            });
         },
 
         eliminaMessagio(index) {
-            this.contacts[this.utente].messages.splice(index,1);
-            
+            this.contacts[this.utente].messages.splice(index, 1);
+
         },
+
+       
 
     }
 
