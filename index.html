@@ -67,9 +67,11 @@
                     <div id="col-left-chats" class="h-100 d-flex flex-grow-1 bg-light overflow-y-scroll">
                         <div class="w-100">
 
-                            <div v-for="(element, index) in contacts" :key="element.id" @click="cambioUtente(index)" class="p-2  border align-items-center justify-content-between gap-2 bg-white " :class="{visible: element.visible, hidden: !element.visible}">
+                            <div v-for="(element, index) in contacts" :key="element.id" @click="cambioUtente(index)"
+                                class="p-2  border align-items-center justify-content-between gap-2 bg-white "
+                                :class="{visible: element.visible, hidden: !element.visible}">
 
-                                <div class="d-flex align-items-center" >
+                                <div class="d-flex align-items-center">
                                     <div class="d-flex justify-content-center ">
                                         <figure class="m-0 ">
                                             <img :src="element.avatar" alt="" class="rounded-circle" width="45">
@@ -85,7 +87,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <span class="ultimo-messaggio" >
+                                    <span class="ultimo-messaggio">
                                         {{ element.messages[element.messages.length - 1].date }}
                                     </span>
                                 </div>
@@ -130,14 +132,15 @@
                                 {{item.date}}
 
                             </span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Messaggio Info</a></li>
 
-                            <li v-on:click="eliminaMessagio">
-                                <a class="dropdown-item" href="#">Cancella messaggio</a>
-                            </li>
-                        </ul>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Messaggio Info</a></li>
+
+                                <li @click="eliminaMessaggio(item.id)">
+                                    <a class="dropdown-item" href="#">Cancella messaggio</a>
+                                </li>
+                            </ul>
+                        </button>
 
                     </div>
 
